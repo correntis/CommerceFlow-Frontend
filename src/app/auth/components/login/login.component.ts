@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,12 +13,13 @@ export class LoginComponent {
   email: string = "";
   password: string = "";
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private route: Router) { }
 
   login(){
     this.authService.login(this.email, this.password)
       .subscribe({
         next: (response) => {
+          this.route.navigate(["/home"]);
           console.log("Login successful", response);
         },
         error: (error) => {

@@ -14,21 +14,27 @@ export class AuthService {
 
   register(username: string, password: string, email: string) : Observable<any> {
     return this.http.post(
-      this.apiUrl + "auth/register", 
+      this.apiUrl + "/auth/register", 
       {
         name: username,
         password: password,
         email: email
+      }, 
+      {
+        withCredentials: true
       }
     )
   }
 
   login(email: string, password: string) : Observable<any> {
     return this.http.post(
-      this.apiUrl + "auth/login",
+      this.apiUrl + "/auth/login",
       {
         email: email,
         password: password
+      }, 
+      {
+        withCredentials: true
       }
     )
   }
